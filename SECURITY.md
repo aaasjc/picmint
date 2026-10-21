@@ -9,7 +9,7 @@
 
 ## 报告漏洞
 
-请**不要**通过公开 Issue 报告安全问题。发送邮件到 **security@picmint.dev**，内容包括：
+请**不要**通过公开 Issue 报告安全问题。发送邮件到 **aaasjc@users.noreply.github.com**，内容包括：
 
 - 受影响的版本或提交哈希。
 - 复现步骤与预期影响。

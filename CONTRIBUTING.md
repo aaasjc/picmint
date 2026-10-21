@@ -17,7 +17,7 @@ PicMint 的核心承诺是**零依赖、零构建、零上传**。以下改动�
 ## 开发流程
 
 ```bash
-git clone https://github.com/picmint/picmint.git
+git clone https://github.com/aaasjc/picmint.git
 cd picmint
 npm start      # http://127.0.0.1:4173
 npm test       # node:test，无需安装任何东西

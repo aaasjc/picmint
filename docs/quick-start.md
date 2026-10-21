@@ -4,7 +4,7 @@
 
 ### 1. 直接访问线上版本
 
-打开 <https://picmint.dev>。不需要注册，也没有任何文件会被上传。
+打开 <https://aaasjc.github.io/picmint/>。不需要注册，也没有任何文件会被上传。
 
 ### 2. 下载后本地双击
 
@@ -15,7 +15,7 @@
 ### 3. 本地服务器（推荐开发时使用）
 
 ```bash
-git clone https://github.com/picmint/picmint.git
+git clone https://github.com/aaasjc/picmint.git
 cd picmint
 npm start
 ```

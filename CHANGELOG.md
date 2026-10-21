@@ -43,5 +43,5 @@
 - 主页支持 `prefers-reduced-motion`，渐入动画在无 JS 环境下自动降级为可见。
 - 移动端 390px 宽度下无横向滚动，画布与参数面板改为纵向堆叠。
 
-[未发布]: https://github.com/picmint/picmint/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/picmint/picmint/releases/tag/v1.0.0
+[未发布]: https://github.com/aaasjc/picmint/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/aaasjc/picmint/releases/tag/v1.0.0

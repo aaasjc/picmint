@@ -14,10 +14,10 @@
     "vanilla-js"
   ],
   "license": "MIT",
-  "homepage": "https://picmint.dev",
+  "homepage": "https://aaasjc.github.io/picmint/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/picmint/picmint.git"
+    "url": "https://github.com/aaasjc/picmint.git"
   },
   "engines": {
     "node": ">=18"

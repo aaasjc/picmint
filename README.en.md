@@ -11,7 +11,7 @@
 [![Size: < 80 KB](https://img.shields.io/badge/first--load-%3C80%20KB-9a63ff?style=flat-square)](#how-it-works)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-2fdc9f?style=flat-square)](CONTRIBUTING.md)
 
-[Live demo](https://picmint.dev) · [Quick start](docs/quick-start.md) · [Architecture](docs/architecture.md) · [Changelog](CHANGELOG.md) · [中文](README.md)
+[Live demo](https://aaasjc.github.io/picmint/) · [Quick start](docs/quick-start.md) · [Architecture](docs/architecture.md) · [Changelog](CHANGELOG.md) · [中文](README.md)
 
 </div>
 
@@ -48,7 +48,7 @@ Every "free online image compressor" asks you to upload the original first. PicM
 Requires Node.js 18+. **No `npm install` needed** — the project has zero dependencies.
 
 ```bash
-git clone https://github.com/picmint/picmint.git
+git clone https://github.com/aaasjc/picmint.git
 cd picmint
 npm start
 # → http://127.0.0.1:4173
@@ -137,7 +137,7 @@ The repository root *is* the static site:
 
 ## Partners
 
-PicMint has zero server cost, but design, font licensing, cross-device testing and security review still need support. Partner slots are open: **hello@picmint.dev**
+PicMint has zero server cost, but design, font licensing, cross-device testing and security review still need support. Partner slots are open: **aaasjc@users.noreply.github.com**
 
 > The partner logos on the landing page are placeholders — swap the inline SVGs in `index.html`; no CSS changes required.
 

@@ -11,7 +11,7 @@
 [![Size: < 80 KB](https://img.shields.io/badge/first--load-%3C80%20KB-9a63ff?style=flat-square)](#技术实现)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-2fdc9f?style=flat-square)](CONTRIBUTING.md)
 
-[在线试用](https://picmint.dev) · [快速开始](docs/quick-start.md) · [架构说明](docs/architecture.md) · [更新日志](CHANGELOG.md) · [English](README.en.md)
+[在线试用](https://aaasjc.github.io/picmint/) · [快速开始](docs/quick-start.md) · [架构说明](docs/architecture.md) · [更新日志](CHANGELOG.md) · [English](README.en.md)
 
 </div>
 
@@ -49,7 +49,7 @@ PicMint 是一个**完全在浏览器本地运行**的图片处理工具。没�
 
 ### 直接使用
 
-打开 [picmint.dev](https://picmint.dev)，或把仓库下载后双击 `index.html`。
+打开 [在线试用](https://aaasjc.github.io/picmint/)，或把仓库下载后双击 `index.html`。
 
 > 部分浏览器对 `file://` 协议下的 Canvas 编码有额外限制，建议用本地服务器打开。
 
@@ -58,7 +58,7 @@ PicMint 是一个**完全在浏览器本地运行**的图片处理工具。没�
 只需要 Node.js 18+，**不需要 `npm install`**：
 
 ```bash
-git clone https://github.com/picmint/picmint.git
+git clone https://github.com/aaasjc/picmint.git
 cd picmint
 npm start
 # → http://127.0.0.1:4173
@@ -162,7 +162,7 @@ picmint/
 
 ## 合作伙伴
 
-PicMint 的服务器成本为零，但设计、字体授权、跨设备测试与安全审计仍然需要支持。合作伙伴位长期开放，欢迎设计工作室、字体厂商与云服务商加入：**hello@picmint.dev**
+PicMint 的服务器成本为零，但设计、字体授权、跨设备测试与安全审计仍然需要支持。合作伙伴位长期开放，欢迎设计工作室、字体厂商与云服务商加入：**aaasjc@users.noreply.github.com**
 
 > 主页 `#partners` 区块的 Logo 为示例占位，替换 `index.html` 中对应的 SVG 即可，无需改动样式。
 
