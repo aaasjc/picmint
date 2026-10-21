@@ -1,0 +1,20 @@
+# dependencies
+node_modules/
+
+# local verification output (screenshots, chrome profiles, cdp scripts)
+.preview/
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# logs and temp
+*.log
+*.tmp
+.tmp*
+
+# editors
+.vscode/
+.idea/
+*.swp

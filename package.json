@@ -1,0 +1,31 @@
+{
+  "name": "picmint",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A local-first image studio in the browser: batch compress, convert, resize, beautify and export. Nothing is uploaded.",
+  "keywords": [
+    "image-compression",
+    "webp",
+    "avif",
+    "local-first",
+    "privacy",
+    "canvas",
+    "vanilla-js"
+  ],
+  "license": "MIT",
+  "homepage": "https://picmint.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/picmint/picmint.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "dev": "node scripts/serve.mjs",
+    "test": "node --test tests/core.test.mjs",
+    "check": "node --check scripts/serve.mjs && node --test tests/core.test.mjs"
+  }
+}

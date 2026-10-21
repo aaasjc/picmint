@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>PicMint Studio — 本地图片工坊</title>
+<meta name="description" content="在浏览器里批量压缩、转换、缩放宽高、套用美化，导出 ZIP。图片不上传。" />
+<meta name="theme-color" content="#eef1ef" />
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="assets/css/theme-tokens.css" />
+<link rel="stylesheet" href="assets/css/studio-app.css" />
+</head>
+<body>
+<div class="app">
+
+  <!-- top bar ---------------------------------------------------------------->
+  <header class="topbar">
+    <a class="topbar__brand" href="index.html" aria-label="PicMint 首页">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <defs>
+          <linearGradient id="studioGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#4CE0B3" />
+            <stop offset=".52" stop-color="#5BC8FF" />
+            <stop offset="1" stop-color="#9A63FF" />
+          </linearGradient>
+        </defs>
+        <rect x=".75" y=".75" width="30.5" height="30.5" rx="9.5" fill="url(#studioGrad)" />
+        <path d="M10 22.4c0-7.2 4.7-11.6 12.6-12.4-.8 7.6-5.1 12-12.6 12.4Z" fill="#04150f" fill-opacity=".88" />
+        <path d="M9.6 22.8 18.8 13.2" stroke="#04150f" stroke-opacity=".5" stroke-width="1.4" stroke-linecap="round" />
+      </svg>
+      <span>Studio</span>
+    </a>
+
+    <a class="topbar__back" href="index.html">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M10 3 5 8l5 5" />
+      </svg>
+      <span>返回首页</span>
+    </a>
+
+    <span class="topbar__divider" aria-hidden="true"></span>
+
+    <div class="topbar__actions">
+      <button class="tbtn" type="button" id="addImages">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M8 3v10M3 8h10" />
+        </svg>
+        <span class="tbtn__label">添加图片</span>
+      </button>
+      <button class="tbtn tbtn--ghost" type="button" id="clearAll" disabled>
+        <span class="tbtn__label">清空</span>
+      </button>
+    </div>
+
+    <span class="topbar__spacer"></span>
+
+    <div class="topbar__actions">
+      <button class="tbtn tbtn--primary" type="button" id="processAll">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M2.5 5.5 8 9l5.5-3.5" />
+          <path d="M2.5 10.5 8 14l5.5-3.5" />
+          <path d="M8 2v7" />
+        </svg>
+        <span class="tbtn__label">开始处理</span>
+      </button>
+      <button class="tbtn" type="button" id="exportZip" disabled>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M8 2v8M5 7.2 8 10.4l3-3.2" />
+          <path d="M2.6 12.6h10.8" />
+        </svg>
+        <span class="tbtn__label">打包下载</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- workspace -------------------------------------------------------------->
+  <div class="workspace">
+
+    <!-- queue -->
+    <aside class="panel panel--queue" aria-label="图片队列">
+      <div class="panel__head">
+        <span class="panel__title">队列</span>
+        <span class="panel__count" id="queueCount">0</span>
+        <span class="topbar__spacer"></span>
+        <button class="tbtn tbtn--ghost tbtn--icon" type="button" id="sortQueue" title="按文件名排序">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M2 4h8M2 8h5M2 12h3M12 3v10M12 13l2-2M12 13l-2-2" />
+          </svg>
+        </button>
+      </div>
+      <div class="panel__body">
+        <div class="queue" id="queue">
+          <div class="queue__empty" id="queueEmpty">
+            <svg width="34" height="34" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="4" y="6" width="24" height="20" rx="3" />
+              <path d="m4 21 6.5-6 4.5 4 4-3.5L28 21" />
+              <circle cx="20.5" cy="12.5" r="1.6" />
+            </svg>
+            还没有图片<br />
+            把文件拖到窗口任意位置
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- canvas -->
+    <main class="canvas-area">
+      <div class="canvas-toolbar">
+        <div class="seg" role="group" aria-label="预览模式">
+          <button class="seg__btn is-on" type="button" data-view="result" aria-pressed="true">结果</button>
+          <button class="seg__btn" type="button" data-view="source" aria-pressed="false">原图</button>
+        </div>
+        <span class="canvas-toolbar__name" id="activeName">未选择图片</span>
+
+        <div class="canvas-toolbar__right">
+          <button class="tbtn tbtn--ghost tbtn--icon" type="button" id="zoomOut" title="缩小" disabled>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10" /></svg>
+          </button>
+          <span class="zoom-readout" id="zoomLevel">—</span>
+          <button class="tbtn tbtn--ghost tbtn--icon" type="button" id="zoomIn" title="放大" disabled>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M8 3v10M3 8h10" /></svg>
+          </button>
+          <button class="tbtn tbtn--ghost" type="button" id="downloadCurrent" disabled>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M8 2v8M5 7.2 8 10.4l3-3.2M2.6 12.6h10.8" />
+            </svg>
+            <span class="tbtn__label">下载</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="canvas-stage" id="stage">
+        <div class="stage-empty" id="stageEmpty">
+          <div class="stage-empty__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5" />
+              <path d="M4 15v3.2A1.8 1.8 0 0 0 5.8 20h12.4a1.8 1.8 0 0 0 1.8-1.8V15" />
+            </svg>
+          </div>
+          <h2>拖入图片开始</h2>
+          <p>支持 JPEG、PNG、WebP、AVIF。也可以按 <kbd>Ctrl</kbd> + <kbd>O</kbd> 选择文件。</p>
+        </div>
+        <div class="stage-frame" id="stageFrame" hidden>
+          <img id="stageImage" alt="预览" />
+        </div>
+      </div>
+    </main>
+
+    <!-- settings -->
+    <aside class="panel panel--settings" aria-label="输出设置">
+      <div class="panel__head">
+        <span class="panel__title">输出设置</span>
+        <span class="topbar__spacer"></span>
+        <button class="tbtn tbtn--ghost" type="button" id="resetSettings">重置</button>
+      </div>
+
+      <div class="panel__body">
+        <div class="settings">
+
+          <section class="field">
+            <div class="field__label">格式</div>
+            <div class="format-grid" id="formatGrid">
+              <button class="format-btn" type="button" data-format="jpeg">JPEG</button>
+              <button class="format-btn" type="button" data-format="png">PNG</button>
+              <button class="format-btn is-on" type="button" data-format="webp">WebP</button>
+              <button class="format-btn" type="button" data-format="avif">AVIF</button>
+            </div>
+            <p class="field__hint" id="formatHint">WebP 在体积和兼容性之间最平衡，推荐作为默认输出。</p>
+          </section>
+
+          <section class="field">
+            <div class="field__label">
+              <span>质量</span>
+              <span class="field__value" id="qualityValue">82</span>
+            </div>
+            <input class="range" type="range" id="quality" min="30" max="100" step="1" value="82" style="--fill: 74%" />
+            <p class="field__hint" id="qualityHint">70–85 通常肉眼无差别；90 以上体积增长很快。</p>
+          </section>
+
+          <section class="field">
+            <div class="field__label">
+              <span>最大边</span>
+              <span class="field__value" id="maxEdgeValue">不缩放</span>
+            </div>
+            <div class="input-row">
+              <input class="num-input" type="number" id="maxEdge" min="0" max="12000" step="10" placeholder="留空 = 保持原尺寸" value="0" />
+              <span class="field__value">px</span>
+            </div>
+            <div class="chips" id="edgeChips">
+              <button class="chip-btn is-on" type="button" data-edge="0">原图</button>
+              <button class="chip-btn" type="button" data-edge="2560">2560</button>
+              <button class="chip-btn" type="button" data-edge="1920">1920</button>
+              <button class="chip-btn" type="button" data-edge="1280">1280</button>
+              <button class="chip-btn" type="button" data-edge="800">800</button>
+            </div>
+          </section>
+
+          <section class="field">
+            <div class="switch-row">
+              <div>
+                <span class="switch-row__text">截图美化</span>
+                <span class="switch-row__sub">渐变背景、圆角、留白</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="beautifyOn" />
+                <span class="switch__track"></span>
+              </label>
+            </div>
+
+            <div class="beautify" id="beautifyPanel" hidden>
+              <div>
+                <div class="field__label" style="margin-bottom: 6px;">背景</div>
+                <div class="swatches" id="swatches">
+                  <button class="swatch is-on" type="button" data-bg="aurora" style="background: linear-gradient(135deg,#4ce0b3,#5bc8ff,#9a63ff)" title="极光"></button>
+                  <button class="swatch" type="button" data-bg="sunset" style="background: linear-gradient(135deg,#ffb36b,#ff6b8b,#8f5bff)" title="日落"></button>
+                  <button class="swatch" type="button" data-bg="graphite" style="background: linear-gradient(135deg,#1b1f27,#2b3240,#11141a)" title="石墨"></button>
+                  <button class="swatch" type="button" data-bg="paper" style="background: linear-gradient(135deg,#ffffff,#f2f5f3,#e3e9e5)" title="纸白"></button>
+                </div>
+              </div>
+
+              <div>
+                <div class="field__label" style="margin-bottom: 4px;">
+                  <span>留白</span>
+                  <span class="field__value" id="paddingValue">8%</span>
+                </div>
+                <div class="range-row">
+                  <input class="range" type="range" id="padding" min="0" max="20" step="1" value="8" style="--fill: 40%" />
+                </div>
+              </div>
+
+              <div>
+                <div class="field__label" style="margin-bottom: 4px;">
+                  <span>圆角</span>
+                  <span class="field__value" id="radiusValue">20px</span>
+                </div>
+                <div class="range-row">
+                  <input class="range" type="range" id="radius" min="0" max="48" step="1" value="20" style="--fill: 42%" />
+                </div>
+              </div>
+
+              <div>
+                <div class="field__label" style="margin-bottom: 6px;">水印文字</div>
+                <input class="text-input" type="text" id="watermark" maxlength="48" placeholder="例如 picmint.dev（可留空）" />
+              </div>
+
+              <p class="field__hint" style="margin: 0;">美化结果统一导出为 PNG，以保留文字边缘的清晰度。</p>
+            </div>
+          </section>
+
+          <section class="field">
+            <div class="switch-row">
+              <div>
+                <span class="switch-row__text">文件名带尺寸后缀</span>
+                <span class="switch-row__sub">photo-1280x853.webp</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="dimSuffix" checked />
+                <span class="switch__track"></span>
+              </label>
+            </div>
+            <div class="switch-row">
+              <div>
+                <span class="switch-row__text">输出大于原图时保留原图</span>
+                <span class="switch-row__sub">避免“压缩后反而更大”</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="keepSmaller" checked />
+                <span class="switch__track"></span>
+              </label>
+            </div>
+          </section>
+
+          <section class="field">
+            <p class="field__hint" style="margin: 0;">
+              所有处理都在本页面内完成。关闭标签页后，图片和设置都不会留下任何副本。
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- status bar -------------------------------------------------------------->
+  <footer class="statusbar">
+    <span class="statusbar__dot" id="statusDot"></span>
+    <span id="statusText">就绪</span>
+    <span class="statusbar__spacer"></span>
+    <span id="statusTotals">—</span>
+  </footer>
+</div>
+
+<div class="drop-veil" aria-hidden="true">松开鼠标即可添加图片</div>
+<div class="toast-stack" id="toasts" role="status" aria-live="polite"></div>
+
+<input type="file" id="fileInput" accept="image/*" multiple hidden />
+
+<script type="module" src="assets/js/studio-app.js"></script>
+</body>
+</html>

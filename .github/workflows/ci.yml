@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['18', '20', '22']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Unit tests
+        run: node --test tests/core.test.mjs
+
+      - name: Syntax check
+        run: |
+          node --check scripts/serve.mjs
+          node --check assets/js/image-core.js
+          node --check assets/js/studio-app.js
+          node --check assets/js/landing-effects.js
+          node --check assets/js/playground-demo.js
+
+      - name: Verify no runtime dependencies
+        run: |
+          node -e "
+            const pkg = require('./package.json');
+            const deps = Object.keys(pkg.dependencies || {});
+            if (deps.length) {
+              console.error('Runtime dependencies are not allowed:', deps.join(', '));
+              process.exit(1);
+            }
+            console.log('zero runtime dependencies ✓');
+          "

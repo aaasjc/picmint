@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="PicMint — 浏览器里的图片工坊">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#05060a"/>
+      <stop offset="1" stop-color="#0b1020"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4CE0B3"/>
+      <stop offset=".52" stop-color="#5BC8FF"/>
+      <stop offset="1" stop-color="#9A63FF"/>
+    </linearGradient>
+    <linearGradient id="text" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#EAFFF7"/>
+      <stop offset=".38" stop-color="#7CFFCF"/>
+      <stop offset=".7" stop-color="#8FD8FF"/>
+      <stop offset="1" stop-color="#BBA2FF"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#2FDC9F" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#2FDC9F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#5B6CFF" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#5B6CFF" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M56 0H0v56" fill="none" stroke="#ffffff" stroke-opacity=".05" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <ellipse cx="180" cy="40" rx="520" ry="420" fill="url(#glowA)"/>
+  <ellipse cx="1080" cy="120" rx="480" ry="400" fill="url(#glowB)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <g transform="translate(88 96)">
+    <rect width="64" height="64" rx="19" fill="url(#mark)"/>
+    <path d="M20 44c0-14.4 9.4-23.2 25.2-24.8C43.6 34.4 35 43.2 20 44Z" fill="#04150f" fill-opacity=".88"/>
+    <text x="86" y="45" font-family="-apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="34" font-weight="700" fill="#F4F7F6" letter-spacing="-1">PicMint</text>
+  </g>
+
+  <text x="88" y="268" font-family="-apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+        font-size="72" font-weight="700" fill="#F4F7F6" letter-spacing="-2.4">把图片压到刚好，</text>
+  <text x="88" y="356" font-family="-apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+        font-size="72" font-weight="700" fill="url(#text)" letter-spacing="-2.4">把隐私留在本地。</text>
+
+  <text x="88" y="424" font-family="-apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+        font-size="26" fill="#A8B2C1" letter-spacing=".2">批量压缩 · WebP / AVIF · 尺寸调整 · 截图美化</text>
+
+  <g transform="translate(88 486)">
+    <rect width="196" height="46" rx="23" fill="#4CE0B3" fill-opacity=".14" stroke="#4CE0B3" stroke-opacity=".45"/>
+    <text x="98" y="30" text-anchor="middle" font-family="-apple-system, 'Segoe UI', 'PingFang SC', sans-serif"
+          font-size="19" fill="#93FBD5">零上传 · 纯本地</text>
+    <rect x="214" width="150" height="46" rx="23" fill="#ffffff" fill-opacity=".05" stroke="#ffffff" stroke-opacity=".16"/>
+    <text x="289" y="30" text-anchor="middle" font-family="-apple-system, 'Segoe UI', 'PingFang SC', sans-serif"
+          font-size="19" fill="#A8B2C1">MIT License</text>
+  </g>
+
+  <g transform="translate(790 176)">
+    <rect width="330" height="300" rx="30" fill="#ffffff" fill-opacity=".045" stroke="#ffffff" stroke-opacity=".12"/>
+    <rect x="22" y="22" width="286" height="176" rx="16" fill="#0d1119" stroke="#ffffff" stroke-opacity=".08"/>
+    <circle cx="248" cy="70" r="30" fill="#FFE0A8" fill-opacity=".55"/>
+    <path d="M22 168 108 104l52 42 44-34 104 56v30H22Z" fill="#2f6a66" fill-opacity=".85"/>
+    <path d="M22 198h286" stroke="#4CE0B3" stroke-opacity=".35" stroke-width="2"/>
+    <text x="26" y="244" font-family="-apple-system, 'Segoe UI', sans-serif" font-size="13"
+          fill="#6F7A8B" letter-spacing="1.6">3.84 MB</text>
+    <text x="26" y="274" font-family="-apple-system, 'Segoe UI', sans-serif" font-size="34" font-weight="700"
+          fill="#5CEEBD">412 KB</text>
+    <text x="304" y="274" text-anchor="end" font-family="-apple-system, 'Segoe UI', sans-serif" font-size="24"
+          font-weight="700" fill="#5CEEBD">−89%</text>
+  </g>
+</svg>

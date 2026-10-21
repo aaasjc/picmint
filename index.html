@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>PicMint — 浏览器里的图片工坊，零上传</title>
+<meta name="description" content="PicMint 是一个完全在浏览器本地运行的图片工具箱：批量压缩、WebP/AVIF 转换、尺寸调整、截图美化、一键打包 ZIP。图片不上传，不需要账号，开源 MIT。" />
+<meta name="theme-color" content="#05060a" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="PicMint — 浏览器里的图片工坊" />
+<meta property="og:description" content="批量压缩、格式转换、截图美化，全部在本地完成。零上传、零账号、零依赖。" />
+<meta property="og:image" content="assets/img/social-card.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="assets/css/theme-tokens.css" />
+<link rel="stylesheet" href="assets/css/landing-page.css" />
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<!-- ambient background ------------------------------------------------------>
+<div class="atmosphere" aria-hidden="true">
+  <div class="atmosphere__aurora atmosphere__aurora--mint"></div>
+  <div class="atmosphere__aurora atmosphere__aurora--indigo"></div>
+  <div class="atmosphere__aurora atmosphere__aurora--violet"></div>
+  <div class="atmosphere__grid"></div>
+  <div class="atmosphere__grain"></div>
+</div>
+
+<!-- navigation -------------------------------------------------------------->
+<header class="nav" id="nav">
+  <div class="shell nav__inner">
+    <a class="brand" href="#top" aria-label="PicMint 首页">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <defs>
+          <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#4CE0B3" />
+            <stop offset=".52" stop-color="#5BC8FF" />
+            <stop offset="1" stop-color="#9A63FF" />
+          </linearGradient>
+        </defs>
+        <rect x=".75" y=".75" width="30.5" height="30.5" rx="9.5" fill="url(#brandGrad)" />
+        <path d="M10 22.4c0-7.2 4.7-11.6 12.6-12.4-.8 7.6-5.1 12-12.6 12.4Z" fill="#04150f" fill-opacity=".88" />
+        <path d="M9.6 22.8 18.8 13.2" stroke="#04150f" stroke-opacity=".5" stroke-width="1.4" stroke-linecap="round" />
+      </svg>
+      <span>PicMint</span>
+      <span class="brand__ver">v1.0</span>
+    </a>
+
+    <nav class="nav__links" aria-label="主要导航">
+      <a class="nav__link" href="#features">功能</a>
+      <a class="nav__link" href="#playground">在线试用</a>
+      <a class="nav__link" href="#partners">合作伙伴</a>
+      <a class="nav__link" href="#faq">常见问题</a>
+      <a class="nav__link" href="https://github.com/picmint/picmint/blob/main/docs/quick-start.md">文档</a>
+    </nav>
+
+    <span class="nav__spacer"></span>
+
+    <div class="nav__actions">
+      <a class="btn btn--ghost btn--sm nav__gh" href="https://github.com/picmint/picmint" target="_blank" rel="noopener noreferrer">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+        </svg>
+        <span>Star</span>
+        <span class="nav__gh-count" data-gh-count>2.4k</span>
+      </a>
+      <a class="btn btn--primary btn--sm" href="studio.html">
+        打开工坊
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" />
+        </svg>
+      </a>
+      <button class="nav__toggle" id="navToggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="nav">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h14M3 10h14M3 14h14" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- hero ------------------------------------------------------------------>
+  <section class="hero">
+    <div class="shell hero__grid">
+      <div class="hero__copy">
+        <span class="eyebrow reveal">
+          <span class="eyebrow__dot"></span>
+          纯浏览器端 · 无需账号 · MIT 开源
+        </span>
+
+        <h1 class="hero__title reveal" style="--reveal-delay: 60ms">
+          <span>把图片压到刚好，</span>
+          <span class="grad-text">把隐私留在本地。</span>
+        </h1>
+
+        <p class="hero__lede reveal" style="--reveal-delay: 120ms">
+          PicMint 是一个<strong>零上传</strong>的图片工坊。批量压缩、格式转换、尺寸调整、截图美化，
+          全部在你的浏览器里完成 —— 一张图片都不会离开这台设备。
+        </p>
+
+        <div class="hero__cta reveal" style="--reveal-delay: 180ms">
+          <a class="btn btn--primary" href="studio.html">
+            开始处理图片
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </a>
+          <a class="btn btn--ghost" href="#playground">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5.5 3.8v8.4l7-4.2-7-4.2Z" />
+            </svg>
+            先试一张
+          </a>
+        </div>
+
+        <ul class="hero__meta reveal" style="--reveal-delay: 240ms">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 5" /></svg>
+            不上传、不联网
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.2 3.4 4v4.1c0 2.9 1.9 4.9 4.6 5.7 2.7-.8 4.6-2.8 4.6-5.7V4L8 2.2Z" /></svg>
+            无追踪脚本
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 1.8v8.4M5 7.2 8 10.4l3-3.2M3 13h10" /></svg>
+            可离线使用
+          </li>
+        </ul>
+      </div>
+
+      <!-- live-ish preview card -->
+      <div class="showcase reveal" style="--reveal-delay: 140ms">
+        <div class="showcase__halo" aria-hidden="true"></div>
+
+        <div class="card-glass demo-card" id="demoCard">
+          <div class="demo-card__bar">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot dot--live"></span>
+            <span class="demo-card__name">picmint ~ studio / sunset-harbour.jpg</span>
+            <span class="demo-card__tag">on-device</span>
+          </div>
+
+          <div class="demo-card__body">
+            <div class="demo-preview">
+              <div class="demo-preview__scene"></div>
+              <div class="demo-preview__scan"></div>
+              <span class="demo-preview__badge"><i></i>处理中 · 本地线程</span>
+            </div>
+
+            <div class="demo-metrics">
+              <div class="demo-metric">
+                <div class="demo-metric__label">原始</div>
+                <div class="demo-metric__value">3.84 MB</div>
+              </div>
+              <div class="demo-metric">
+                <div class="demo-metric__label">输出</div>
+                <div class="demo-metric__value demo-metric__value--win">412 KB</div>
+              </div>
+              <div class="demo-metric">
+                <div class="demo-metric__label">节省</div>
+                <div class="demo-metric__value demo-metric__value--win">89%</div>
+              </div>
+            </div>
+
+            <div class="demo-split">
+              <span>JPEG</span>
+              <span class="demo-split__bar"><span class="demo-split__fill" id="demoSplit"></span></span>
+              <span>WEBP q78</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="float-chip float-chip--tl">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.2 3.4 4v4.1c0 2.9 1.9 4.9 4.6 5.7 2.7-.8 4.6-2.8 4.6-5.7V4L8 2.2Z" /></svg>
+          <strong>0 B</strong> 已上传
+        </div>
+        <div class="float-chip float-chip--br">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5h11v7h-11z" /><path d="m2.5 5.5 5.5 4 5.5-4" /></svg>
+          <strong>128</strong> 张 / 批次
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- stats ----------------------------------------------------------------->
+  <section class="stats" aria-label="项目数据">
+    <div class="shell">
+      <div class="stats__grid">
+        <div class="stat reveal">
+          <div class="stat__value" data-count="100" data-suffix="%">100%</div>
+          <div class="stat__label">浏览器内处理</div>
+        </div>
+        <div class="stat reveal" style="--reveal-delay: 60ms">
+          <div class="stat__value" data-count="0">0</div>
+          <div class="stat__label">张图片离开设备</div>
+        </div>
+        <div class="stat reveal" style="--reveal-delay: 120ms">
+          <div class="stat__value" data-count="4">4</div>
+          <div class="stat__label">种输出格式</div>
+        </div>
+        <div class="stat reveal" style="--reveal-delay: 180ms">
+          <div class="stat__value">MIT</div>
+          <div class="stat__label">开源协议</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- features -------------------------------------------------------------->
+  <section class="section" id="features">
+    <div class="shell">
+      <div class="section-head section-head--center">
+        <span class="eyebrow reveal"><span class="eyebrow__dot"></span>为什么是 PicMint</span>
+        <h2 class="section-title reveal" style="--reveal-delay: 60ms">该有的都有，不该传的一个字节都不传</h2>
+        <p class="section-sub reveal" style="--reveal-delay: 120ms">
+          大多数在线压缩工具会先把你的图片传到服务器。PicMint 反过来：所有计算都在这台设备上跑完。
+        </p>
+      </div>
+
+      <div class="features">
+        <article class="feature reveal">
+          <div class="feature__icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10 2.6 3.6 5.2v5.3c0 3.7 2.5 6.3 6.4 7.4 3.9-1.1 6.4-3.7 6.4-7.4V5.2L10 2.6Z" />
+              <path d="m7.4 10.1 1.8 1.8 3.5-3.7" />
+            </svg>
+          </div>
+          <h3 class="feature__title">零上传，零追踪</h3>
+          <p class="feature__text">没有后端，没有图片接口，没有埋点。断网之后工坊照样能用 —— 这是最诚实的隐私承诺。</p>
+        </article>
+
+        <article class="feature reveal" style="--reveal-delay: 60ms">
+          <div class="feature__icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="9" height="9" rx="2" />
+              <rect x="8" y="8" width="9" height="9" rx="2" />
+            </svg>
+          </div>
+          <h3 class="feature__title">批量压缩</h3>
+          <p class="feature__text">一次拖入整批图片，按质量或目标体积压缩。处理进度、前后体积、节省比例全部实时可见。</p>
+        </article>
+
+        <article class="feature reveal" style="--reveal-delay: 120ms">
+          <div class="feature__icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 6.5h8.5a3.5 3.5 0 0 1 0 7H4M6.5 4 4 6.5 6.5 9" />
+            </svg>
+          </div>
+          <h3 class="feature__title">四格式互转</h3>
+          <p class="feature__text">JPEG、PNG、WebP、AVIF 随需输出。编码器直接调用浏览器原生能力，不额外下载任何运行时。</p>
+        </article>
+
+        <article class="feature reveal" style="--reveal-delay: 180ms">
+          <div class="feature__icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 6V3.8h14V6M10 4v12M7 16h6" />
+            </svg>
+          </div>
+          <h3 class="feature__title">智能缩放</h3>
+          <p class="feature__text">只填最大边，另一侧自动等比推算。EXIF 方向自动校正，竖拍的照片不会横过来。</p>
+        </article>
+
+        <article class="feature reveal" style="--reveal-delay: 240ms">
+          <div class="feature__icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2.6" y="4" width="14.8" height="10.6" rx="2" />
+              <path d="M2.6 11.6 7 7.8l3 2.6 2.6-2 2.2 2" />
+              <path d="M6.2 17h7.6" />
+            </svg>
+          </div>
+          <h3 class="feature__title">截图美化</h3>
+          <p class="feature__text">渐变背景、圆角、内边距、柔和投影与水印，一次设置批量套用，适合做文档配图和社交封面。</p>
+        </article>
+
+        <article class="feature reveal" style="--reveal-delay: 300ms">
+          <div class="feature__icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 6.2A2.2 2.2 0 0 1 5.2 4h2l1.3 2h6.3A2.2 2.2 0 0 1 17 8.2v6.6A2.2 2.2 0 0 1 14.8 17H5.2A2.2 2.2 0 0 1 3 14.8Z" />
+              <path d="M10 8.4v5M8 11.4h4" />
+            </svg>
+          </div>
+          <h3 class="feature__title">一键打包 ZIP</h3>
+          <p class="feature__text">处理完直接导出压缩包，文件名自动带上尺寸与格式后缀。ZIP 写入器只有 90 行，不引第三方库。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- playground ------------------------------------------------------------>
+  <section class="section" id="playground">
+    <div class="shell">
+      <div class="playground">
+        <div class="pg-copy">
+          <span class="eyebrow reveal"><span class="eyebrow__dot"></span>实时演示 · 就在这个页面</span>
+          <h2 class="section-title reveal" style="--reveal-delay: 60ms">拖一张进来，<br />亲眼看着它变小</h2>
+          <p class="section-sub reveal" style="--reveal-delay: 120ms">
+            下面这个演示不会发出任何网络请求。你可以拔掉网线再试，结果完全一样。
+          </p>
+
+          <ol class="pg-steps">
+            <li class="pg-step reveal" style="--reveal-delay: 160ms">
+              <span class="pg-step__num">1</span>
+              <div>
+                <div class="pg-step__title">把图片拖进右侧区域</div>
+                <p class="pg-step__text">支持 JPEG / PNG / WebP / AVIF，单张最大 80 MB。</p>
+              </div>
+            </li>
+            <li class="pg-step reveal" style="--reveal-delay: 220ms">
+              <span class="pg-step__num">2</span>
+              <div>
+                <div class="pg-step__title">浏览器本地编码为 WebP</div>
+                <p class="pg-step__text">使用 Canvas 原生编码器，质量 0.82，不经过任何服务器。</p>
+              </div>
+            </li>
+            <li class="pg-step reveal" style="--reveal-delay: 280ms">
+              <span class="pg-step__num">3</span>
+              <div>
+                <div class="pg-step__title">对比、下载、或继续批量处理</div>
+                <p class="pg-step__text">想调整质量、尺寸、加水印，去工坊里一次搞定。</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="dropzone reveal" id="dropzone" style="--reveal-delay: 120ms">
+          <div id="dropzoneIdle">
+            <div class="dropzone__icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5" />
+                <path d="M4 15v3.2A1.8 1.8 0 0 0 5.8 20h12.4a1.8 1.8 0 0 0 1.8-1.8V15" />
+              </svg>
+            </div>
+            <p class="dropzone__title">拖入图片，或点击选择文件</p>
+            <p class="dropzone__hint">文件只在本机内存中处理，刷新即消失</p>
+            <div class="dropzone__or">或</div>
+            <button class="btn btn--ghost btn--sm" type="button" id="pickFile">选择一张图片</button>
+            <input type="file" id="pgInput" accept="image/jpeg,image/png,image/webp,image/avif" hidden />
+          </div>
+
+          <div class="dropzone__result" id="dropzoneResult" hidden>
+            <div class="result-head">
+              <span id="resultName">—</span>
+              <strong id="resultSaving">—</strong>
+            </div>
+            <div class="result-figure">
+              <img id="resultImg" alt="压缩结果预览" />
+              <span class="result-badge" id="resultFormat">WEBP</span>
+            </div>
+            <div class="result-grid">
+              <div class="result-cell"><span>原始</span><b id="cellBefore">—</b></div>
+              <div class="result-cell"><span>处理后</span><b id="cellAfter">—</b></div>
+              <div class="result-cell"><span>尺寸</span><b id="cellSize">—</b></div>
+            </div>
+            <div class="result-actions">
+              <a class="btn btn--primary btn--sm" id="downloadResult" download>下载结果</a>
+              <button class="btn btn--ghost btn--sm" type="button" id="resetDemo">换一张</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- partners -------------------------------------------------------------->
+  <section class="partners section" id="partners">
+    <div class="shell">
+      <div class="partners__head">
+        <div>
+          <span class="eyebrow reveal"><span class="eyebrow__dot"></span>Partners</span>
+          <h2 class="section-title reveal" style="--reveal-delay: 60ms">和我们一起，<br />把工具做得更轻</h2>
+        </div>
+        <p class="section-sub reveal" style="--reveal-delay: 120ms; margin: 0; max-width: 40ch;">
+          PicMint 的服务器成本为零，但设计、字体、测试设备与安全审计仍然需要伙伴支持。
+        </p>
+      </div>
+
+      <div class="partner-grid reveal">
+        <a class="partner" href="#partners" aria-label="Northwind Studio">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 24 16 6l10 18" /><path d="M11 19h10" />
+          </svg>
+          <span class="partner__name">Northwind</span>
+          <span class="partner__kind">Design</span>
+        </a>
+        <a class="partner" href="#partners" aria-label="Lumen Cloud">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="16" cy="16" r="6.5" /><path d="M16 3v4M16 25v4M3 16h4M25 16h4M7 7l2.8 2.8M22.2 22.2 25 25M25 7l-2.8 2.8M9.8 22.2 7 25" />
+          </svg>
+          <span class="partner__name">Lumen Cloud</span>
+          <span class="partner__kind">Infrastructure</span>
+        </a>
+        <a class="partner" href="#partners" aria-label="Vertex Type">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 6l10 20L26 6" /><path d="M11.5 6h9" />
+          </svg>
+          <span class="partner__name">Vertex Type</span>
+          <span class="partner__kind">Typography</span>
+        </a>
+        <a class="partner" href="#partners" aria-label="Kite Analytics">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 4 27 16 16 28 5 16Z" /><path d="M16 4v24M5 16h22" />
+          </svg>
+          <span class="partner__name">Kite Analytics</span>
+          <span class="partner__kind">Insights</span>
+        </a>
+        <a class="partner" href="#partners" aria-label="Orbit Security">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="16" cy="16" r="4.2" /><ellipse cx="16" cy="16" rx="12" ry="5.4" transform="rotate(-28 16 16)" />
+          </svg>
+          <span class="partner__name">Orbit Security</span>
+          <span class="partner__kind">Audit</span>
+        </a>
+        <a class="partner" href="#partners" aria-label="Paperplane Media">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M27 6 5 14.5l8.2 3.3L27 6ZM13.2 17.8 15 26l3.2-6.4L27 6" />
+          </svg>
+          <span class="partner__name">Paperplane</span>
+          <span class="partner__kind">Media</span>
+        </a>
+      </div>
+
+      <p class="partners__note">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="8" cy="8" r="6.2" /><path d="M8 7.4v3.4M8 5.4v.6" />
+        </svg>
+        合作伙伴位长期开放，欢迎设计工作室、字体厂商与云服务商加入。
+        <a href="mailto:hello@picmint.dev">成为合作伙伴 →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- faq ------------------------------------------------------------------->
+  <section class="section" id="faq">
+    <div class="shell">
+      <div class="section-head section-head--center">
+        <span class="eyebrow reveal"><span class="eyebrow__dot"></span>FAQ</span>
+        <h2 class="section-title reveal" style="--reveal-delay: 60ms">你大概会想问</h2>
+      </div>
+
+      <div class="faq">
+        <details class="faq__item reveal" open>
+          <summary>图片真的不会上传吗？我怎么验证？</summary>
+          <div class="faq__answer">
+            打开浏览器开发者工具的 Network 面板，把 <code>Studio</code> 页面加载完之后再拖入图片 —— 除了页面本身，不会出现任何请求。
+            项目没有后端、没有第三方脚本、没有字体 CDN，部署在 GitHub Pages 上就是几个静态文件。
+          </div>
+        </details>
+        <details class="faq__item reveal" style="--reveal-delay: 60ms">
+          <summary>支持哪些格式？AVIF 呢？</summary>
+          <div class="faq__answer">
+            输入支持浏览器能解码的所有格式（JPEG / PNG / WebP / AVIF / GIF 首帧）。
+            输出提供 JPEG、PNG、WebP、AVIF 四种。AVIF 编码依赖浏览器实现：Chrome 85+、Edge 121+、Safari 16.4+ 可用；
+            不支持的浏览器会自动隐藏该选项，而不是悄悄降级。
+          </div>
+        </details>
+        <details class="faq__item reveal" style="--reveal-delay: 120ms">
+          <summary>有文件大小或数量限制吗？</summary>
+          <div class="faq__answer">
+            没有服务端，所以没有“上传上限”。真正的限制来自设备内存：建议单批不超过 128 张、单张不超过 80 MB。
+            超过这个量级时，Studio 会分批处理并给出进度，避免标签页卡死。
+          </div>
+        </details>
+        <details class="faq__item reveal" style="--reveal-delay: 180ms">
+          <summary>为什么有时候压缩后反而变大了？</summary>
+          <div class="faq__answer">
+            常见于两种情况：一是原图已经高度优化过；二是把已经压过的 JPEG 转成 PNG（PNG 是无损格式）。
+            Studio 会为每张图显示实际体积，如果输出比输入大，会标出提示并保留原图供你选择。
+          </div>
+        </details>
+        <details class="faq__item reveal" style="--reveal-delay: 240ms">
+          <summary>可以商用吗？二次开发呢？</summary>
+          <div class="faq__answer">
+            代码采用 MIT 协议，可以自由用于商业项目、闭源产品或二次分发，保留版权声明即可。
+            品牌名和 Logo 不在此授权范围内，衍生项目请换一个自己的名字。
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- final cta -------------------------------------------------------------->
+  <section class="section" style="padding-top: 0;">
+    <div class="shell">
+      <div class="cta-panel reveal">
+        <div class="cta-panel__grid" aria-hidden="true"></div>
+        <h2>下一次压图，<br class="hide-md" />别再把原片传给别人</h2>
+        <p>打开就能用，不用注册，不用等待上传，也不用担心哪天服务关停。</p>
+        <div class="cta-panel__actions">
+          <a class="btn btn--primary" href="studio.html">
+            打开 PicMint Studio
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </a>
+          <a class="btn btn--ghost" href="https://github.com/picmint/picmint" target="_blank" rel="noopener noreferrer">在 GitHub 上 Star</a>
+        </div>
+        <p class="cta-panel__fine">MIT License · 无 Cookie · 无第三方脚本 · 首屏 &lt; 60 KB</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- footer ------------------------------------------------------------------>
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div>
+        <a class="brand" href="#top" aria-label="PicMint 首页">
+          <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect x=".75" y=".75" width="30.5" height="30.5" rx="9.5" fill="url(#brandGrad)" />
+            <path d="M10 22.4c0-7.2 4.7-11.6 12.6-12.4-.8 7.6-5.1 12-12.6 12.4Z" fill="#04150f" fill-opacity=".88" />
+          </svg>
+          <span>PicMint</span>
+        </a>
+        <p class="footer__about">
+          一个把“图片处理”重新放回本地的开源项目。没有账号体系，没有云端队列，也没有隐私条款需要阅读。
+        </p>
+      </div>
+
+      <div class="footer__col">
+        <h3>产品</h3>
+        <ul>
+          <li><a href="studio.html">Studio 工坊</a></li>
+          <li><a href="#features">功能总览</a></li>
+          <li><a href="#playground">在线演示</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3>资源</h3>
+        <ul>
+          <li><a href="https://github.com/picmint/picmint/blob/main/docs/quick-start.md">快速开始</a></li>
+          <li><a href="https://github.com/picmint/picmint/blob/main/docs/architecture.md">架构说明</a></li>
+          <li><a href="https://github.com/picmint/picmint/blob/main/CHANGELOG.md">更新日志</a></li>
+          <li><a href="https://github.com/picmint/picmint/blob/main/CONTRIBUTING.md">参与贡献</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3>社区</h3>
+        <ul>
+          <li><a href="https://github.com/picmint/picmint" target="_blank" rel="noopener noreferrer">GitHub 仓库</a></li>
+          <li><a href="https://github.com/picmint/picmint/issues" target="_blank" rel="noopener noreferrer">问题反馈</a></li>
+          <li><a href="#partners">合作伙伴</a></li>
+          <li><a href="mailto:hello@picmint.dev">联系我们</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> PicMint contributors. 基于 MIT 协议发布。</span>
+      <div class="footer__badges">
+        <span class="chip">MIT</span>
+        <span class="chip">no cookies</span>
+        <span class="chip">vanilla JS</span>
+        <span class="chip">local-first</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="assets/js/landing-effects.js"></script>
+<script type="module" src="assets/js/playground-demo.js"></script>
+</body>
+</html>

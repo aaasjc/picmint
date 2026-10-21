@@ -1,0 +1,138 @@
+/* ==========================================================================
+   PicMint — design tokens
+   Single source of truth for color, type, spacing, motion and elevation.
+   Loaded by both the marketing page and the studio app.
+   ========================================================================== */
+
+:root {
+  /* --- brand ------------------------------------------------------------ */
+  --mint-50: #eafff7;
+  --mint-100: #c9ffe9;
+  --mint-200: #93fbd5;
+  --mint-300: #5ceebd;
+  --mint-400: #2fdc9f;
+  --mint-500: #17c188;
+  --mint-600: #0b9a6c;
+
+  --indigo-300: #a5b8ff;
+  --indigo-400: #7c93ff;
+  --indigo-500: #5b6cff;
+  --indigo-600: #4453e6;
+
+  --violet-400: #b98cff;
+  --violet-500: #9a63ff;
+
+  /* --- surfaces (marketing, dark) --------------------------------------- */
+  --ink-950: #05060a;
+  --ink-900: #080a11;
+  --ink-850: #0b0e17;
+  --ink-800: #10141f;
+  --ink-700: #171c2a;
+
+  --paper: #ffffff;
+  --paper-soft: #f6f8f7;
+
+  /* --- text ------------------------------------------------------------- */
+  --text-hi: #f4f7f6;
+  --text-mid: #a8b2c1;
+  --text-low: #6f7a8b;
+
+  --text-ink: #0f1512;
+  --text-ink-mid: #4a5551;
+  --text-ink-low: #7d8884;
+
+  /* --- lines ------------------------------------------------------------ */
+  --line-soft: rgba(255, 255, 255, 0.075);
+  --line-mid: rgba(255, 255, 255, 0.13);
+  --line-strong: rgba(255, 255, 255, 0.22);
+
+  --line-ink-soft: rgba(12, 22, 18, 0.08);
+  --line-ink-mid: rgba(12, 22, 18, 0.14);
+
+  /* --- gradients -------------------------------------------------------- */
+  --grad-brand: linear-gradient(135deg, #4ce0b3 0%, #63c8ff 48%, #8f7bff 100%);
+  --grad-brand-soft: linear-gradient(135deg, rgba(76, 224, 179, 0.16), rgba(143, 123, 255, 0.16));
+  --grad-text: linear-gradient(96deg, #eafff7 4%, #7cffcf 34%, #8fd8ff 64%, #bba2ff 96%);
+  --grad-stroke: linear-gradient(140deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.02) 42%, rgba(124, 255, 207, 0.28));
+
+  /* --- radius ----------------------------------------------------------- */
+  --r-xs: 8px;
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 30px;
+  --r-pill: 999px;
+
+  /* --- elevation -------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 18px 40px -18px rgba(2, 8, 12, 0.75);
+  --shadow-lg: 0 40px 90px -40px rgba(0, 0, 0, 0.85);
+  --glow-mint: 0 0 0 1px rgba(76, 224, 179, 0.35), 0 20px 60px -20px rgba(47, 220, 159, 0.55);
+
+  /* --- type ------------------------------------------------------------- */
+  --font-sans: "Inter var", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei",
+    "Noto Sans SC", system-ui, sans-serif;
+  --font-mono: "SFMono-Regular", "JetBrains Mono", "Cascadia Code", Consolas,
+    "Liberation Mono", monospace;
+
+  --fs-display: clamp(2.15rem, 4.35vw, 3.5rem);
+  --fs-h1: clamp(2.1rem, 4.2vw, 3.2rem);
+  --fs-h2: clamp(1.55rem, 2.6vw, 2.15rem);
+  --fs-h3: 1.16rem;
+  --fs-body: 1rem;
+  --fs-sm: 0.875rem;
+  --fs-xs: 0.78rem;
+
+  --lh-tight: 1.08;
+  --lh-snug: 1.32;
+  --lh-body: 1.72;
+
+  --tracking-tight: -0.032em;
+  --tracking-wide: 0.16em;
+
+  /* --- layout ----------------------------------------------------------- */
+  --page-max: 1180px;
+  --gutter: clamp(20px, 4vw, 40px);
+  --section-y: clamp(62px, 7.4vw, 106px);
+
+  /* --- motion ----------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 160ms;
+  --dur-mid: 320ms;
+  --dur-slow: 720ms;
+
+  /* --- studio (light app surface) --------------------------------------- */
+  --app-bg: #eef1ef;
+  --app-panel: #ffffff;
+  --app-panel-2: #f7f9f8;
+  --app-line: rgba(12, 22, 18, 0.09);
+  --app-line-2: rgba(12, 22, 18, 0.16);
+  --app-text: #0f1512;
+  --app-text-mid: #5a6561;
+  --app-text-low: #8b9591;
+  --app-accent: #0b9a6c;
+  --app-accent-soft: #e3faf1;
+  --app-danger: #c8402f;
+  --app-radius: 12px;
+  --app-shadow: 0 1px 2px rgba(15, 25, 20, 0.06), 0 8px 24px -12px rgba(15, 25, 20, 0.18);
+}
+
+/* Honour OS-level motion preferences everywhere. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur-mid: 1ms;
+    --dur-slow: 1ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
